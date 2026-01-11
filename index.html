@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <title>Weather App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+        <div class="min-h-screen bg-background p-6">
+      <div class="max-w-[1400px] mx-auto">
+        <!-- <Header /> -->
+         <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <button class="p-2 rounded-lg bg-secondary hover:bg-muted transition-colors home cursor-pointer">
+<svg  class="w-5 h-5 text-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+</svg>
+
+          <!-- <LayoutGrid class="w-5 h-5 text-foreground" /> -->
+        </button>
+        <button class="p-2 rounded-lg hover:bg-secondary transition-colors">
+            
+<svg class="w-5 h-5 text-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+</svg>
+          <!-- <Bell class="w-5 h-5 text-muted-foreground" /> -->
+        </button>
+        <div class="flex items-center gap-2 text-foreground">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+</svg>
+          <!-- <MapPin class="w-4 h-4" /> -->
+          <span class="font-medium current-location">Dhaka,Bangladesh</span>
+        </div>
+      </div>
+
+      <div class="flex-1 max-w-md mx-8">
+        <div class="relative">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+</svg>
+
+          <!-- <Search class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" /> -->
+           <form id="search-city" action="#" method="GET">
+            <input
+            type="text"
+            placeholder="Search City"
+            class="w-full bg-secondary border border-border rounded-full py-2.5 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          />
+           </form>
+          
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button 
+        id="theme-toggle"
+  class="p-2.5 rounded-full bg-secondary hover:bg-muted transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+  aria-label="Toggle dark mode"
+  aria-pressed="false"
+        >
+            <svg class="w-5 h-5 text-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+</svg>
+          <!-- <Moon class="w-5 h-5 text-foreground" /> -->
+        </button>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 overflow-hidden">
+          <img
+            src="./assets/images/avatar.jpg"
+            alt="User avatar"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- {/* Main content grid */} -->
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-12 lg:col-span-8">
+            <!-- <TimeTabs /> -->
+             <div role="tablist" class="tabs-container time flex gap-6 mb-6"></div>
+            
+    <!-- {/* Weather row */} -->
+            <div class="grid grid-cols-12 gap-4 mb-6">
+              <div class="col-span-12 md:col-span-4">
+                             <!-- <CurrentWeather /> -->
+<div id="current" class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 glow-accent">
+      <div class="flex justify-between items-start mb-4">
+        <span id="day" class="text-foreground font-medium"></span>
+        <span id="time" class="text-muted-foreground text-sm">-:- AM</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="flex items-start">
+            <span class="text-6xl font-light text-foreground temp">-</span>
+            <span class="text-2xl text-foreground mt-1">°</span>
+          </div>
+        </div>
+        <div class="relative">
+            <svg class="w-16 h-16 text-accent animate-pulse-glow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+</svg>
+          <!-- <Sun class="w-16 h-16 text-accent animate-pulse-glow" /> -->
+
+          <svg class="w-10 h-10 text-weather-cloud absolute -bottom-1 -left-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" />
+</svg>
+          <!-- <Cloud class="w-10 h-10 text-weather-cloud absolute -bottom-1 -left-2" /> -->
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <span class="text-muted-foreground">Real Feel </span>
+          <span class="text-foreground font-medium feels-like">-°</span>
+        </div>
+        <div>
+          <span class="text-muted-foreground">Sunrise </span>
+          <span class="text-foreground font-medium sunrise">-:- AM</span>
+        </div>
+        <div>
+          <span class="text-muted-foreground wind-direction">Wind N-E </span>
+          <span class="text-foreground font-medium wind-speed">- km/h</span>
+        </div>
+        <div>
+          <span class="text-muted-foreground">Sunset </span>
+          <span class="text-foreground font-medium sunset">-:-</span>
+        </div>
+        <div>
+          <span class="text-muted-foreground">Pressure </span>
+          <span class="text-foreground font-medium pressure">- MB</span>
+        </div>
+        <div>
+          <span class="text-muted-foreground">Humidity </span>
+          <span class="text-foreground font-medium humidity">-%</span>
+        </div>
+      </div>
+    </div>              
+  </div>
+              <div class="col-span-12 md:col-span-8">
+                <!-- <WeeklyForecast /> -->
+                     <!-- WeeklyForecast Skeleton -->
+  <div class="forecast-skeleton flex gap-3">
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+        <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300 flex-1 flex flex-col items-center py-4 px-3 min-w-[70px]" >
+          <div class="animate-pulse rounded-md bg-muted h-4 w-8 mb-3" ></div>
+<div class="animate-pulse rounded-md bg-muted h-10 w-8 mb-3 rounded-full" ></div>
+<div class="animate-pulse rounded-md bg-muted h-6 w-6" ></div>
+        </div>
+    </div>
+                <div class="forecast-container hidden flex gap-3"></div>
+              </div>
+            </div>
+
+ <!-- {/* Today's Overview */} -->
+            <h2 class="text-foreground font-medium mb-4">Today's Overview</h2>
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12">
+                <!-- <OverviewCards /> -->
+                 <div class="grid grid-cols-2 gap-4">
+      <!-- <WindStatus /> -->
+       <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300">
+    <h3 class="text-muted-foreground text-sm mb-4">Wind Status</h3>
+    <div class="wind-status flex items-end gap-1 mb-4 h-12">
+        <!-- Wind data goes here   -->
+    </div>
+    <div class="flex justify-between items-end">
+      <div>
+        <span class="text-2xl font-semibold text-foreground wind-overview">--</span>
+        <span class="text-muted-foreground text-sm ml-1">km/h</span>
+      </div>
+      <!-- <span class="text-muted-foreground text-sm">6.20 AM</span> -->
+    </div>
+  </div>
+
+<!-- UV Index Card -->
+<div
+  id="uv-card"
+  class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300"
+>
+  <h3 class="text-muted-foreground text-sm mb-4">UV Index</h3>
+
+  <div class="flex justify-center mb-4">
+    <div class="relative w-24 h-12">
+      <svg viewBox="0 0 100 50" class="w-full h-full">
+        <!-- Background arc -->
+        <path
+          id="uv-bg"
+          d="M 10 45 A 40 40 0 0 1 90 45"
+          fill="none"
+          stroke="hsl(var(--muted))"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+
+        <!-- Dynamic arc -->
+        <path
+          id="uv-progress"
+          d="M 10 45 A 40 40 0 0 1 90 45"
+          fill="none"
+          stroke="hsl(var(--primary))"
+          stroke-width="8"
+          stroke-linecap="round"
+          stroke-dasharray="126"
+          stroke-dashoffset="126"
+        />
+
+        <!-- Scale labels -->
+        <text x="7" y="48" class="text-[8px] fill-muted-foreground">0</text>
+        <text x="16" y="24" class="text-[8px] fill-muted-foreground">3</text>
+        <text x="50" y="10" class="text-[8px] fill-muted-foreground">6</text>
+        <text x="80" y="24" class="text-[8px] fill-muted-foreground">8</text>
+        <text x="85" y="48" class="text-[8px] fill-muted-foreground">11+</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <span
+      id="uv-value"
+      class="text-2xl font-semibold text-foreground"
+    >--</span>
+    <span class="text-muted-foreground text-sm ml-1">UV</span>
+  </div>
+</div>
+
+      <!-- <Humidity /> -->
+       <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300">
+    <h3 class="text-muted-foreground text-sm mb-4">Humidity</h3>
+    <div class="flex justify-center mb-4">
+      <div class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-16 h-16 text-weather-rain opacity-50">
+          <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+          <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+        </svg>
+        <!-- <Droplets class="w-16 h-16 text-weather-rain opacity-50" /> -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-10 h-10 text-weather-rain">
+          <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+          <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+        </svg>
+          <!-- <Droplets class="w-10 h-10 text-weather-rain" /> -->
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-2xl font-semibold text-foreground humidity-overview">--%</span>
+      <div class="flex items-center gap-1 text-xs text-muted-foreground">
+        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-10 h-10 text-weather-rain">
+          <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+          <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+        </svg>
+        <!-- <Droplets class="w-3 h-3" /> -->
+        <span>The dew point is <span class="text-weather-rain dew-point">_°</span> right now</span>
+      </div>
+    </div>
+  </div>
+      <!-- <Visibility /> -->
+       <div class="weather-card bg-card border border-border rounded-2xl p-5 transition-all duration-300">
+    <h3 class="text-muted-foreground text-sm mb-4">Visibility</h3>
+    <div class="flex justify-center mb-4">
+      <div class="relative">
+        <div class="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center">
+          <svg class="w-8 h-8 text-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+</svg>
+          <!-- <Eye class="w-8 h-8 text-foreground" /> -->
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-2xl font-semibold text-foreground visibility-overview">--</span>
+        <span class="text-muted-foreground text-sm ml-1">km</span>
+      </div>
+      <div class="flex items-center gap-1 text-xs text-muted-foreground">
+        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+</svg>
+
+        <!-- <Eye class="w-3 h-3" /> -->
+        <span class="visibility-description">Haze is affecting visibility</span>
+      </div>
+    </div>
+  </div>
+    </div>
+              </div>
+            </div>
+          </div>
+
+            <!-- {/* Right section */} -->
+                      <div class="col-span-12 lg:col-span-4 space-y-6">
+                                    <!-- <ForecastTabs /> -->
+                                     <div class="flex gap-2 mb-4">
+      <button class="px-4 py-1.5 rounded-full text-sm font-medium transition-colors bg-primary text-primary-foreground">
+        Forecast
+      </button>
+      <!-- <button class="px-4 py-1.5 rounded-full text-sm font-medium transition-colors text-muted-foreground hover:text-foreground">
+        Air Quality
+      </button> -->
+    </div>
+
+                <!-- <OtherCities /> -->
+    <div>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-foreground font-medium">Other Cities</h3>
+        <button class="text-muted-foreground text-sm hover:text-foreground transition-colors cursor-pointer edit-cities-btn">
+          Edit
+        </button>
+      </div>
+      <div>
+      <div class="flex items-center justify-between mb-4">
+        <Skeleton class="h-5 w-24" />
+        <Skeleton class="h-4 w-12" />
+      </div>
+      <div class="cities-skeleton space-y-3">
+          <div class="weather-card flex items-center justify-between py-3 px-4" > 
+            <div class="space-y-1">
+                                    <div class="animate-pulse rounded-md bg-muted h-3 w-12"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-5 w-24"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-3 w-20"></div>
+
+            </div>
+                      <div class="animate-pulse rounded-md bg-muted h-8 w-8 rounded-full"></div>
+          </div>
+          <div class="weather-card flex items-center justify-between py-3 px-4" > 
+            <div class="space-y-1">
+                                    <div class="animate-pulse rounded-md bg-muted h-3 w-12"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-5 w-24"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-3 w-20"></div>
+
+            </div>
+                      <div class="animate-pulse rounded-md bg-muted h-8 w-8 rounded-full"></div>
+          </div>
+          <div class="weather-card flex items-center justify-between py-3 px-4" > 
+            <div class="space-y-1">
+                                    <div class="animate-pulse rounded-md bg-muted h-3 w-12"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-5 w-24"></div>
+                      <div class="animate-pulse rounded-md bg-muted h-3 w-20"></div>
+
+            </div>
+                      <div class="animate-pulse rounded-md bg-muted h-8 w-8 rounded-full"></div>
+          </div>
+      </div>
+    </div>
+      <div class="hidden cities space-y-3 overflow-auto h-[550px] p-2">
+        <!-- City cards will be injected here -->
+      </div>
+    </div>
+                      </div>
+
+        </div>
+          </div>
+        </div>
+
+
+  <script src="./script.js"></script>
+</body>
+</html>

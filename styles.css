@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --background: 230 25% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 230 20% 12%;
+    --card-foreground: 0 0% 98%;
+    --card-hover: 230 20% 15%;
+
+    --popover: 230 20% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 15% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 230 15% 25%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 38 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 210 100% 50%;
+
+    --radius: 1rem;
+
+    --weather-sun: 38 95% 55%;
+    --weather-cloud: 220 15% 70%;
+    --weather-rain: 200 80% 60%;
+    --weather-snow: 200 30% 90%;
+
+    --chart-line: 200 80% 60%;
+    --chart-area: 200 80% 60%;
+  }
+
+  .light {
+  /* Base */
+  --background: 0 0% 100%;
+  --foreground: 230 25% 12%;
+
+  /* Cards */
+  --card: 0 0% 98%;
+  --card-foreground: 230 25% 12%;
+  --card-hover: 0 0% 95%;
+
+  /* Popovers */
+  --popover: 0 0% 98%;
+  --popover-foreground: 230 25% 12%;
+
+  /* Primary */
+  --primary: 210 100% 50%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary */
+  --secondary: 220 15% 92%;
+  --secondary-foreground: 230 25% 15%;
+
+  /* Muted */
+  --muted: 220 15% 90%;
+  --muted-foreground: 220 10% 40%;
+
+  /* Accent */
+  --accent: 38 95% 55%;
+  --accent-foreground: 230 25% 15%;
+
+  /* Destructive */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders / Inputs */
+  --border: 220 15% 85%;
+  --input: 220 15% 85%;
+  --ring: 210 100% 50%;
+
+  /* Radius */
+  --radius: 1rem;
+}
+
+  * {
+    border-color: hsl(var(--border));
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  body {
+    background:hsl(var(--background));
+    color:hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
+}
+
+  .weather-card {
+    /* @apply bg-card border border-border rounded-2xl p-5 transition-all duration-300; */
+    background: hsl(var(--card));
+
+  }
+
+  .weather-card:hover {
+    /* @apply bg-card-hover; */
+    background-color: hsl(var(--card-hover));
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--accent) / 0.2);
+  }
+
+    .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+
+
+  .bg-muted-foreground\/30 {
+    background-color: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+
+  .bg-muted {
+    background-color: hsl(var(--muted));
+  }
+
+  .bg-secondary {
+    background-color: hsl(var(--secondary));
+  }
+
+  .bg-muted\/50 {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  /* .gradient-text {
+    @apply bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent;
+
+  } */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+
+.wind-status > div {
+  cursor: pointer;
+}
+
+.wind-status > div:hover {
+  opacity: 0.85;
+}
+
+.text-weather-rain {
+    color: hsl(var(--weather-rain));
+}
+
+.delete-btn {
+  position: absolute;
+  top: -5px; /* Position slightly outside the top edge */
+  right: -5px; /* Position slightly outside the right edge */
+  background-color: red;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%; /* Makes it a circle */
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.weather-card.edit-mode .delete-btn {
+  display: flex; /* Show the delete button */
+}
+
