@@ -369,6 +369,30 @@ otherCitiesContainer.innerHTML = cities.map(city => `
           }
         });
       });
+
+
+      // Delete City Card
+function deleteCard(buttonElement) {
+
+    const cardToRemove = buttonElement.closest('.weather-card');
+    const cityName = cardToRemove.querySelector("h4").textContent;
+
+    if (cardToRemove) {
+        const storedCities = loadStoredCities()
+        const newCities = storedCities.filter(city => city !== cityName.toLowerCase());
+        saveCitiesToStorage(newCities);
+
+        cardToRemove.remove();
+    }
+}
+
+const deleteButtons = otherCitiesContainer.querySelectorAll(".delete-btn");
+deleteButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent triggering the card click event
+        deleteCard(button);
+    });
+});
     }
 
 
@@ -598,22 +622,7 @@ if (editCitiesBtn) {
 }  
 
 
-// Delete City Card
-function deleteCard(buttonElement) {
-
-    const cardToRemove = buttonElement.closest('.weather-card');
-    const cityName = cardToRemove.querySelector("h4").textContent;
-
-    if (cardToRemove) {
-        const storedCities = loadStoredCities()
-        const newCities = storedCities.filter(city => city !== cityName.toLowerCase());
-        saveCitiesToStorage(newCities);
-
-        cardToRemove.remove();
-    }
-}
-
-    
+// Home Button - Current Location    
 const homeButton = document.querySelector(".home");
 if (homeButton) {
   homeButton.addEventListener("click", () => {
@@ -621,6 +630,8 @@ if (homeButton) {
   });
 }
 
+
+// Theme Toggle
 const toggleBtn = document.getElementById("theme-toggle");
 const body = document.body;
 
